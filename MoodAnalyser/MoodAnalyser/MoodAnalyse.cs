@@ -14,17 +14,14 @@ namespace MoodAnalyser
             this.message = message;
         }
 
+        //analyse mood if sad or happy
         public string AnalyseMood()
         {
-            
                 if (message.ToLower().Contains("happy"))
                 {
                     return "happy";
                 }
-                else if (message.Equals(string.Empty))
-                {
-                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_EXCEPTION, "Message should not be empty");
-                }
+              
                 else
                 {
                     return "sad";

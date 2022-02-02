@@ -10,8 +10,8 @@ namespace UnitTestProject1
         [TestCategory("Happy Mood")]
         public void GivenMessageShouldReturnHappy()
         {
-            ///Follow AAA strategy
-            ///Arrange , Act & last Assert
+            //Follow AAA strategy
+            //Arrange , Act & last Assert
             MoodAnalyse mood = new MoodAnalyse("Happy Mood");
             string excepted = "happy";
             var actual = mood.AnalyseMood();
@@ -21,7 +21,7 @@ namespace UnitTestProject1
         [TestCategory("SAD Mood")]
         public void GivenMessageShouldReturnSad()
         {
-            ///Arrange , Act & Assert
+            //Arrange , Act & Assert
             MoodAnalyse mood = new MoodAnalyse("SAD Mood");
             string excepted = "sad";
             var actual = mood.AnalyseMood();
