@@ -27,5 +27,17 @@ namespace UnitTestProject1
             var actual = mood.AnalyseMood();
             Assert.AreEqual(excepted, actual);
         }
+        [TestMethod]
+        [TestCategory("Null Reference")]
+        public void GivenNullShouldReturnHappy()
+        {
+            
+            //Arrange , Act and in last Assert
+            string message = null;
+            MoodAnalyse mood = new MoodAnalyse(message);
+            string excepted = "happy";
+            var actual = mood.AnalyseMood();
+            Assert.AreEqual(excepted, actual);
+        }
     }
 }

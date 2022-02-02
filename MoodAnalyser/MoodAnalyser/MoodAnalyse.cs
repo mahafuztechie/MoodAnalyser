@@ -14,19 +14,26 @@ namespace MoodAnalyser
             this.message = message;
         }
 
-        //analyse mood if sad or happy
         public string AnalyseMood()
         {
+            // try catch to check if exception occured
+            try
+            {
                 if (message.ToLower().Contains("happy"))
                 {
                     return "happy";
                 }
-              
                 else
                 {
                     return "sad";
                 }
-         
+            }
+            //catcing null refernce exception & return string as happy
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "happy";
+            }
         }
     }
 }
