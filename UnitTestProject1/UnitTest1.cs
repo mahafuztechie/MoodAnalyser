@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MoodAnalyser;
+using System;
 
 namespace UnitTestProject1
 {
@@ -28,16 +29,42 @@ namespace UnitTestProject1
             Assert.AreEqual(excepted, actual);
         }
         [TestMethod]
-        [TestCategory("Null Reference")]
-        public void GivenNullShouldReturnHappy()
+        [TestCategory("Null Exception")]
+        public void GivenNullShouldReturnCustomException()
         {
-            
             //Arrange , Act and in last Assert
-            string message = null;
-            MoodAnalyse mood = new MoodAnalyse(message);
-            string excepted = "happy";
-            var actual = mood.AnalyseMood();
-            Assert.AreEqual(excepted, actual);
+          
+            string excepted = "Message can't be null";
+            try
+            {
+                MoodAnalyse mood = new MoodAnalyse(null);
+                string actual = mood.AnalyseMood();
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Console.WriteLine("moodanalyser exception :" + ex);
+                Assert.AreEqual(excepted, ex.Message);
+            }
+           
+        }
+        [TestMethod]
+        [TestCategory("Empty Exception")]
+        public void GivenEmptyShouldReturnCustomException()
+        {
+            ///Arrange , Act and in last Assert
+            
+            string excepted = "Message can't be Empty";
+            try
+            {
+                MoodAnalyse mood = new MoodAnalyse("");
+                string actual = mood.AnalyseMood();
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Console.WriteLine("Mood anaylser Exception :" + ex);
+                Assert.AreEqual(excepted, ex.Message);
+            }
+         
         }
     }
 }

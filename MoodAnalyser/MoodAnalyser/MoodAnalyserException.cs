@@ -8,6 +8,14 @@ namespace MoodAnalyser
 {
     public class MoodAnalyserException : Exception
     {
-      
+        public ExceptionType type;
+        public enum ExceptionType
+        {
+            NULL_EXCEPTION, EMPTY_EXCEPTION
+        }
+        public MoodAnalyserException(ExceptionType type, string message) : base(message)
+        {
+            this.type = type;
+        }
     }
 }
