@@ -66,5 +66,44 @@ namespace UnitTestProject1
             }
          
         }
+        [TestMethod]
+        public void Given_MoodAnalyser_ClassName_ShouldReturn_MoodAnalyseObject()
+        {
+            object expected = new MoodAnalyse("NULL");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseMethod("MoodAnalyser.MoodAnalyse", "MoodAnalyse");
+            expected.Equals(obj);
+        }
+
+        [TestMethod]
+        public void GivenInvalidClassName_ShouldThrow_MoodAnalyserException()
+        {
+            string expected = "Class not Found";
+            try
+            {
+                //creating instance of class
+                object obj = MoodAnalyserFactory.CreateMoodAnalyseMethod("MoodAnalyser.MoodAnalyse", "MoodAnalyse");
+            }
+            catch (MoodAnalyserException e)
+            {
+                //catch & compare exception
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void GivenClass_WhenNotProper_Constructor_ShouldThrow_MoodAnalyserException()
+        {
+            string expected = "Constructor is not Found";
+            try
+            {
+                //creating instance of class
+                object obj = MoodAnalyserFactory.CreateMoodAnalyseMethod("MoodAnalyser.MoodAnalyse", "WrongConstructor");
+            }
+            catch (MoodAnalyserException e)
+            {
+                //catch & compare exception
+                Assert.AreEqual(expected, e.Message);
+            }
+        }
     }
 }
