@@ -18,7 +18,7 @@ namespace MoodAnalyser
 
         }
 
-        public string AnalyseMood()
+        public string AnalyseMood(string message)
         {
             // try catch to check if exception occured
             try
@@ -49,6 +49,10 @@ namespace MoodAnalyser
             }
       
         }
-    
+        public string AnalyseMood()
+        {
+            return AnalyseMood(this.message);
+        }
+
     }
 }

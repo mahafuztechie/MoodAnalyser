@@ -128,10 +128,9 @@ namespace UnitTestProject1
             }
         }
 
-        // <summary>
         /// This test case is for
-        /// TC 5.3 Given Invalid constructor name should throw MoodAnalyserException.
-        /// </summary>
+        ///  Given Invalid constructor name should throw MoodAnalyserException.
+    
         [TestMethod]
         public void GivenInvalidConstructorName_ShouldThrow_MoodAnalyserException_Of_ParameterizedConstructor()
         {
@@ -143,6 +142,30 @@ namespace UnitTestProject1
             catch (MoodAnalyserException e)
             {
                 Assert.AreEqual(expected, e.Message);
+            }
+        }
+       
+        // Happy message passing using Reflection when correct
+        // should return HAPPY Mood
+        [TestMethod]
+        public void GivenHappyMessage_UsingReflection_IfCorrect_Should_ReturnHappy()
+        {
+            string message = MoodAnalyserFactory.InvokeMethod("MoodAnalyser.MoodAnalyse", "GetMood", "happy");
+            Assert.AreEqual("HAPPY", message);
+        }
+
+        // Given Happy message when incorrect method 
+        // should throw MoodAnalyserException
+        [TestMethod]
+        public void GivenHappyMessage_UsingReflection_WhenIncorrectMethod_shouldThrow_MoodAnayserException()
+        {
+            try
+            {
+                string message = MoodAnalyserFactory.InvokeMethod("MoodAnalyser.MoodAnalyse", "getMethod", "happy");
+            }
+            catch (MoodAnalyserException e)
+            {
+                Assert.AreEqual(MoodAnalyserException.ExceptionType.INVALID_INPUT, e.Message);
             }
         }
     }
